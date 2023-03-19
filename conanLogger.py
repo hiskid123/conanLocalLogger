@@ -47,6 +47,7 @@ class S(BaseHTTPRequestHandler):
         logstring = logstring.replace("%3E", ">")
         logstring = logstring.replace("%3B", ";")
         logstring = logstring.replace("%3D", "=")
+        logstring = logstring.replace("%2D", "-")
         logging.info(logstring)
         #self._set_response()
         #self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
