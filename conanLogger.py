@@ -29,6 +29,8 @@ class S(BaseHTTPRequestHandler):
 
     def do_GET(self):
         logstring = str(format(self.path))
+        logstring = logstring.replace("/?sender=", "Sender: ")
+        logstring = logstring.replace("&message=", " - Message: ")
         logstring = logstring.replace("%20", " ")
         logstring = logstring.replace("%2C", ",")
         logstring = logstring.replace("%2E", ".")
