@@ -19,7 +19,7 @@ class S(BaseHTTPRequestHandler):
     logging.basicConfig(filename=logfile,
         filemode='a',
         format='%(asctime)s, %(message)s',
-        datefmt='%H:%M:%S',
+        datefmt='%Y-%m-%d %H:%M:%S',
         level=logging.DEBUG)
     
     def _set_response(self):
