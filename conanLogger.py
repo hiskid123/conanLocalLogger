@@ -10,12 +10,18 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse
 import logging
 import sys
+import datetime
 
 
 
 
 class S(BaseHTTPRequestHandler):
-    logfile='conanchatlog.txt'
+#using now() to get current time
+    current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+    timeString = str(current_time)
+    timeString = timeString.replace(":", "-")
+    logfileName="conanchatlog.txt"+"_"+str(timeString)+".txt"
+    logfile=logfileName
     logging.basicConfig(filename=logfile,
         filemode='a',
         format='%(asctime)s, %(message)s',
@@ -29,8 +35,8 @@ class S(BaseHTTPRequestHandler):
 
     def do_GET(self):
         logstring = str(format(self.path))
-        logstring = logstring.replace("/?sender=", "Sender: ")
-        logstring = logstring.replace("&message=", " - Message: ")
+        logstring = logstring.replace("/?sender=", "")
+        logstring = logstring.replace("&message=", ": ")
         logstring = logstring.replace("%20", " ")
         logstring = logstring.replace("%2C", ",")
         logstring = logstring.replace("%2E", ".")
